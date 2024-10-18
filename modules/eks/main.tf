@@ -71,8 +71,8 @@ module "eks" {
         # control plane 과 통신 
         enable_bootstrap_user_data = true
 
-        capacity_type = "ON_DEMAND"
         instance_type = ["t3.medium"]
+        capacity_type = "SPOT"
 
         # node group에 붙게될 iam role
         create_iam_role = true
@@ -84,5 +84,10 @@ module "eks" {
             AmazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
         }
     }
+  }
+
+  tags = {
+    Environment = "dev"
+    Terraform = "true"
   }
 }
