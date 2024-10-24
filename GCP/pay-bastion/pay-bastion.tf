@@ -23,6 +23,7 @@ module "dev-pay-bastion-101" {
   project_name = "${module.essential.project_name}"
   zone_name = "${module.essential.zone_name}"
   region_name = "${module.essential.region_name}"
+  # svc_account_name = "${module.essential.svc_account_name}"
 
   compute_name = "dev-pay-bastion-101"
   compute_size = "n2-highcpu-2"
@@ -32,7 +33,14 @@ module "dev-pay-bastion-101" {
   osdisk_type = "pd-ssd"  # default value is pd-balanced
 
   # Networks
-  vpc_name = "default"      # "wavve-dev-service-vpc-01"
-  subnet_name = "default"   # "service-dev-mgmt-subnet"(10.171.0.0/24)
-  private_id = ""           # 10.171.0.11
+  vpc_name = "default"        # "wavve-dev-service-vpc-01"
+  subnet_name = "default"     # "service-dev-mgmt-subnet"(10.178.0.0/20)
+  private_id = "10.178.0.11"  # 10.178.0.11
+  network_tags = "${module.essential.network_tags}"
+
+  # ssh key
+  # gce_ssh_pub_key_file = "~/keys/gcp/dev.pub"
+
+  # labels
+  tag_project = "${module.essential.tag_project}"
 }
